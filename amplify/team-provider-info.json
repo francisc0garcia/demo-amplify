@@ -9,17 +9,30 @@
       "UnauthRoleName": "amplify-amplify089afc9ec0614-staging-172521-unauthRole",
       "StackName": "amplify-amplify089afc9ec0614-staging-172521",
       "StackId": "arn:aws:cloudformation:us-east-2:455581898622:stack/amplify-amplify089afc9ec0614-staging-172521/57267380-d632-11ed-91ba-0acf7c7da9a5",
-      "AmplifyAppId": "d2iz78us9zkkp9"
+      "AmplifyAppId": "d2iz78us9zkkp9",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplify089afc9ec0614-staging-172521-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "demoamplify0d6d1bb7": {}
       },
       "api": {
-        "demoamplify": {}
+        "demoamplify": {},
+        "restApiAmplifyDemo": {}
       },
       "storage": {
-        "imagestorage": {}
+        "imagestorage": {},
+        "dynamoDBAmplifyREST": {}
+      },
+      "function": {
+        "demoamplify3fbaee42": {
+          "deploymentBucketName": "amplify-amplify089afc9ec0614-staging-172521-deployment",
+          "s3Key": "amplify-builds/demoamplify3fbaee42-4369615358692b716235-build.zip"
+        },
+        "demoEndpointLambda": {
+          "deploymentBucketName": "amplify-amplify089afc9ec0614-staging-172521-deployment",
+          "s3Key": "amplify-builds/demoEndpointLambda-5067692f366c36334546-build.zip"
+        }
       }
     }
   }

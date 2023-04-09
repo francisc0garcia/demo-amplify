@@ -1,0 +1,14 @@
+{
+  "resourceName": "dynamoDBAmplifyREST",
+  "tableName": "notes",
+  "partitionKey": {
+    "fieldName": "name",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "category",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

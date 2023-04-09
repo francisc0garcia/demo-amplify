@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "paths": {
+    "/notes": {
+      "name": "/notes",
+      "lambdaFunction": "demoamplify3fbaee42",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    },
+    "/demo-endpoint": {
+      "name": "/demo-endpoint",
+      "lambdaFunction": "demoEndpointLambda",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

@@ -15,6 +15,28 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
+    },
+    "restApiAmplifyDemo": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "demoamplify3fbaee42"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "demoEndpointLambda"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
     }
   },
   "auth": {
@@ -43,7 +65,71 @@
       "service": "Cognito"
     }
   },
+  "function": {
+    "demoEndpointLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "demoamplify3fbaee42": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "dynamoDBAmplifyREST"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_demoEndpointLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "demoEndpointLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_demoEndpointLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "demoEndpointLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_demoamplify3fbaee42_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "demoamplify3fbaee42"
+        }
+      ]
+    },
+    "AMPLIFY_function_demoamplify3fbaee42_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "demoamplify3fbaee42"
+        }
+      ]
+    }
+  },
   "storage": {
+    "dynamoDBAmplifyREST": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
     "imagestorage": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
