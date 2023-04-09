@@ -26,23 +26,27 @@ export default function NoteCreateForm(props) {
     name: "",
     description: "",
     image: "",
+    category: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
   const [image, setImage] = React.useState(initialValues.image);
+  const [category, setCategory] = React.useState(initialValues.category);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setDescription(initialValues.description);
     setImage(initialValues.image);
+    setCategory(initialValues.category);
     setErrors({});
   };
   const validations = {
     name: [{ type: "Required" }],
     description: [],
     image: [],
+    category: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -73,6 +77,7 @@ export default function NoteCreateForm(props) {
           name,
           description,
           image,
+          category,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -130,6 +135,7 @@ export default function NoteCreateForm(props) {
               name: value,
               description,
               image,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -156,6 +162,7 @@ export default function NoteCreateForm(props) {
               name,
               description: value,
               image,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -182,6 +189,7 @@ export default function NoteCreateForm(props) {
               name,
               description,
               image: value,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -195,6 +203,33 @@ export default function NoteCreateForm(props) {
         errorMessage={errors.image?.errorMessage}
         hasError={errors.image?.hasError}
         {...getOverrideProps(overrides, "image")}
+      ></TextField>
+      <TextField
+        label="Category"
+        isRequired={false}
+        isReadOnly={false}
+        value={category}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              description,
+              image,
+              category: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.category ?? value;
+          }
+          if (errors.category?.hasError) {
+            runValidationTasks("category", value);
+          }
+          setCategory(value);
+        }}
+        onBlur={() => runValidationTasks("category", category)}
+        errorMessage={errors.category?.errorMessage}
+        hasError={errors.category?.hasError}
+        {...getOverrideProps(overrides, "category")}
       ></TextField>
       <Flex
         justifyContent="space-between"
